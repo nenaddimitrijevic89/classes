@@ -9,8 +9,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        black: "#000",
         foreground: "var(--foreground)",
+        orange: "#FECF3B",
+      },
+      backgroundImage: {
+        "white-logo": "url('../assets/logo-white.svg')",
+        "orange-logo": "url('../assets/logo-orange.svg')",
+      },
+      boxShadow: {
+        'custom': '0 0 9px rgba(0, 0, 0, 0.5)',
       },
     },
   },

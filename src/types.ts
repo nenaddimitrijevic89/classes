@@ -12,3 +12,17 @@ export type TClass = {
   excerpt: string;
   categories: TCategory[];
 };
+
+export type TTimetable = {
+  id: number;
+  name: string;
+  description: string;
+  instructor: string;
+  date: string;
+  time: string;
+  duration: string;
+  location: string;
+  gym: string;
+  dayOfWeek: number;
+  capacity: number;
+};

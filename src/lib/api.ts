@@ -47,3 +47,10 @@ export const getClassesByCategory = async (categorySlug: string) => {
   console.log(response, "classes by category");
   return response.data;
 };
+
+export const getClassBySlug = async (slug: string) => {
+  const response = await STRAPI_API.get(
+    `/classes?filters[slug][$eq]=${slug}&populate=*`
+  );
+  return response.data;
+};

@@ -11,6 +11,10 @@ export type TClass = {
   slug: string;
   excerpt: string;
   categories: TCategory[];
+  timetables: TTimetable[];
+  featuredImage: {
+    url: string;
+  };
 };
 
 export type TTimetable = {

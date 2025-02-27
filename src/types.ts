@@ -30,3 +30,9 @@ export type TTimetable = {
   dayOfWeek: number;
   capacity: number;
 };
+
+export type TOption = {
+  label: string;
+  value: string;
+  disabled?: boolean;
+};

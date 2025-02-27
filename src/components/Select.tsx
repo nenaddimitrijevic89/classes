@@ -1,23 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { HTMLProps, useState } from "react";
 import Image from "next/image";
 
 import dropdownArrow from "../assets/dropdown-arrow.svg";
 import { twMerge } from "tailwind-merge";
+import { TOption } from "../types";
 
-interface Props {
-  options: {
-    label: string;
-    value: string;
-  }[];
-  placeholder: string;
+interface Props extends HTMLProps<HTMLSelectElement> {
+  options: TOption[];
   className?: string;
 }
 
-export const Select = ({ options, placeholder, className }: Props) => {
+export const Select = ({
+  options,
+  placeholder,
+  className,
+  ...props
+}: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   return (
     <div className="relative w-full">
       <select
@@ -27,15 +29,16 @@ export const Select = ({ options, placeholder, className }: Props) => {
           "w-full bg-black text-white text-sm font-bold py-[14px] px-4 border border-[#2D2D2D] appearance-none focus:outline-none hover:bg-[#2D2D2D] focus:bg-[#2D2D2D]",
           className
         )}
+        {...props}
       >
-        <option value="" disabled className="my-1">
+        <option value="" disabled>
           {placeholder}
         </option>
         {options.map((option, i) => (
           <option
             key={`${option.value}-${i}`}
             value={option.value}
-            className="my-1"
+            disabled={option?.disabled}
           >
             {option.label}
           </option>

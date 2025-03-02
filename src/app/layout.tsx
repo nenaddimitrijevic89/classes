@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-black">
         <Header />
-        <div className="px-10 py-[120px]">{children}</div>
+        <div className="px-5 sm:px-10 py-[120px]">{children}</div>
       </body>
     </html>
   );

@@ -1,26 +1,21 @@
 import Link from "next/link";
 
 import { TClass } from "../types";
-import { CATEGORY_COLORS } from "../constants/categoryColors";
 import { DiagonalArrow } from "./DiagonalArrow";
+import { CategoryColorBullet } from "./CategoryColorBullet";
 
 interface Props {
   classItem: TClass;
 }
 
 export const ClassCard = ({ classItem }: Props) => {
-  const categorySlug = classItem?.categories?.[0]
-    ?.slug as keyof typeof CATEGORY_COLORS;
-  const backgroundColor = CATEGORY_COLORS[categorySlug];
+  const categorySlug = classItem?.categories?.[0]?.slug;
 
   return (
     <Link href={`/${classItem.slug}`} key={classItem.id}>
       <div className="flex justify-between py-5 border-t border-[#2d2d2d]">
         <div className="flex gap-3">
-          <div
-            className="w-[14px] h-[14px] rounded-full mt-2"
-            style={{ backgroundColor: backgroundColor }}
-          />
+          <CategoryColorBullet categorySlug={categorySlug} className="mt-2" />
           <div className="flex flex-col gap-1 w-[60%]">
             <h1 className="text-white text-2xl uppercase font-bold">
               {classItem.title}

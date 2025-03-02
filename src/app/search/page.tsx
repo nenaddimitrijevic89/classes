@@ -1,15 +1,16 @@
-import { ClassCard } from "@/@@/components/ClassCard";
-import { getAllClasses } from "@/@@/lib/api";
-import { TClass } from "@/@@/types";
+import { Search } from "@/@@/components/search-page/Search";
+import { getAllClasses, getCategories, getGyms } from "@/@@/lib/api";
 
 export default async function SearchPage() {
   const classes = await getAllClasses();
-  console.log(classes, 'classes')
+  const gyms = await getGyms();
+  const categories = await getCategories();
+  console.log(gyms, "gyms");
   return (
-    <div className="px-0 lg:px-24">
-      {classes.data.map((cls: TClass, index: number) => (
-        <ClassCard key={`${cls.id}-${index}`} classItem={cls} />
-      ))}
-    </div>
+    <Search
+      classes={classes.data}
+      gyms={gyms.data}
+      categories={categories.data}
+    />
   );
 }

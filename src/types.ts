@@ -1,7 +1,7 @@
 export type TCategory = {
   id: number;
   title: string;
-  slug: string;
+  slug: ECategorySlug;
   classes: TClass[];
 };
 
@@ -36,3 +36,27 @@ export type TOption = {
   value: string;
   disabled?: boolean;
 };
+
+export type TGym = {
+  id: number;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
+  legendId: string;
+  details: string;
+  markerLeft: number;
+  markerTop: number;
+  slug: string;
+};
+
+export enum ECategorySlug {
+  AERIAL = "aerial",
+  FIGHT = "fight",
+  RIDE = "ride",
+  STRENGTH = "strength",
+  HOLISTIC = "holistic",
+  RHYTHM = "rhythm",
+  SWEAT = "sweat",
+  SKILL = "skill",
+  MIND = "mind",
+}

@@ -43,7 +43,7 @@ export const BookClass = ({ classItem }: Props) => {
         disabled,
       };
     });
-    console.log(filteredTimetables, "filteredTimetables");
+
     setTimetableOptions(options);
   };
 

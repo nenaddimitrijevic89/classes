@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <header className="flex items-center justify-between w-full p-10 text-white fixed z-10 bg-gradient-to-t from-transparent to-black">
+    <header className="flex items-center justify-between w-full px-5 sm:px-10 py-10 text-white fixed z-10 bg-gradient-to-t from-transparent to-black">
       <Link href="/">
         <div className="w-10 h-10 bg-white-logo hover:bg-orange-logo bg-cover transition-all duration-200 ease-in-out" />
       </Link>

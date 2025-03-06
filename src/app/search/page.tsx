@@ -5,7 +5,7 @@ export default async function SearchPage() {
   const classes = await getAllClasses();
   const gyms = await getGyms();
   const categories = await getCategories();
-  console.log(gyms, "gyms");
+
   return (
     <Search
       classes={classes.data}

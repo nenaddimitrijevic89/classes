@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 import { ECategorySlug, TCategory, TClass, TGym } from "@/@@/types";
@@ -9,6 +10,7 @@ import { ClassCard } from "../ClassCard";
 import { CategoryColorBullet } from "../CategoryColorBullet";
 import { FilterList } from "./FilterList";
 import { FilterButton } from "./FilterButton";
+import { LoadingSpinner } from "../LoadingSpinner";
 
 interface Props {
   classes: TClass[];
@@ -17,11 +19,43 @@ interface Props {
 }
 
 export const Search = ({ classes, gyms, categories }: Props) => {
+  const [loading, setLoading] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedGyms, setSelectedGyms] = useState<TGym["slug"][]>([]);
   const [selectedCategories, setSelectedCategories] = useState<ECategorySlug[]>(
     []
   );
-  const [selectedGyms, setSelectedGyms] = useState<TGym["slug"][]>([]);
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const gym = searchParams.get("gym");
+  const category = searchParams.get("category");
+
+  useEffect(() => {
+    if (gym) {
+      setSelectedGyms(gym.split(" "));
+    }
+    if (category) {
+      setSelectedCategories(category.split(" ") as ECategorySlug[]);
+    }
+    setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const updateURLWithFilters = useCallback(() => {
+    const newParams = new URLSearchParams();
+    if (selectedGyms.length > 0) {
+      newParams.set("gym", selectedGyms.join(" "));
+    }
+    if (selectedCategories.length > 0) {
+      newParams.set("category", selectedCategories.join(" "));
+    }
+    router.push(`?${newParams.toString()}`);
+  }, [selectedGyms, selectedCategories, router]);
+
+  useEffect(() => {
+    updateURLWithFilters();
+  }, [updateURLWithFilters, selectedCategories, selectedGyms]);
 
   const handleGymFilters = (gymSlug: string) => {
     if (selectedGyms.includes(gymSlug)) {
@@ -49,23 +83,25 @@ export const Search = ({ classes, gyms, categories }: Props) => {
     const matchesCategory =
       selectedCategories.length === 0 ||
       cls.categories.some((category) =>
-        selectedCategories.includes(category.slug as ECategorySlug)
+        selectedCategories.includes(category.slug)
       );
 
     const matchesGym =
       selectedGyms.length === 0 ||
       cls.timetables.some((timetable) =>
-        selectedGyms.includes(timetable.gym.toLowerCase())
+        selectedGyms.includes(timetable.gym.toLowerCase().replace(" ", "-"))
       );
 
     return matchesCategory && matchesGym;
   });
 
-  console.log(filteredClasses, "filteredClasses");
-
   const isGymActive = (gymSlug: string) => selectedGyms.includes(gymSlug);
   const isCategoryActive = (categorySlug: ECategorySlug) =>
     selectedCategories.includes(categorySlug);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="px-0 lg:px-24">
@@ -117,7 +153,9 @@ export const Search = ({ classes, gyms, categories }: Props) => {
                   onClick={() => handleGymFilters(gym.slug)}
                 >
                   <span>{gym.title}</span>
-                  <Image src={close} className="w-2" alt="close icon" />
+                  {isGymActive(gym.slug) && (
+                    <Image src={close} className="w-2" alt="close icon" />
+                  )}
                 </div>
               ))}
             </div>
@@ -141,7 +179,9 @@ export const Search = ({ classes, gyms, categories }: Props) => {
                     className="w-3 h-3"
                   />
                   <span>{category.title}</span>
-                  <Image src={close} className="w-2" alt="close icon" />
+                  {isCategoryActive(category.slug) && (
+                    <Image src={close} className="w-2" alt="close icon" />
+                  )}
                 </div>
               ))}
             </div>

@@ -18,7 +18,7 @@ export default {
         "orange-logo": "url('../assets/logo-orange.svg')",
       },
       boxShadow: {
-        'custom': '0 0 9px rgba(0, 0, 0, 0.5)',
+        custom: "0 0 9px rgba(0, 0, 0, 0.5)",
       },
     },
   },

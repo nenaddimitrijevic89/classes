@@ -20,7 +20,7 @@ export const CategoryCard = ({ category, index }: Props) => {
       : `${category.classes.length} class`;
 
   return (
-    <Link href={`/search/${category.slug}`}>
+    <Link href={`/search?category=${category.slug}`}>
       <div className={`${justify} transform ${translate} mx-[15%]`}>
         <div className="relative group w-fit cursor-pointer">
           <div className="absolute z-10 flex flex-col gap-4 font-bold transform translate-y-[100%] -translate-x-[50%]">

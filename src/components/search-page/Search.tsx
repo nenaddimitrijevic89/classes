@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
@@ -18,7 +18,7 @@ interface Props {
   categories: TCategory[];
 }
 
-export const Search = ({ classes, gyms, categories }: Props) => {
+const SearchComponent = ({ classes, gyms, categories }: Props) => {
   const [loading, setLoading] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedGyms, setSelectedGyms] = useState<TGym["slug"][]>([]);
@@ -191,3 +191,9 @@ export const Search = ({ classes, gyms, categories }: Props) => {
     </div>
   );
 };
+
+export const Search = (props: Props) => (
+  <Suspense fallback={<LoadingSpinner />}>
+    <SearchComponent {...props} />
+  </Suspense>
+);

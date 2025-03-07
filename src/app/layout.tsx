@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Header } from "../components/Header";
+import type { Metadata } from 'next';
+import './globals.css';
+import { Header } from '../components/Header';
 
 export const metadata: Metadata = {
-  title: "Categories",
-  description: "A collection of categories",
+  title: 'Categories',
+  description: 'A collection of categories',
 };
 
 export default function RootLayout({
@@ -13,10 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-black">
+    <html lang='en'>
+      <body className='bg-black'>
         <Header />
-        <div className="px-5 sm:px-10 py-[120px]">{children}</div>
+        <div className='px-5 py-[120px] sm:px-10'>{children}</div>
       </body>
     </html>
   );

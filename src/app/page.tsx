@@ -1,10 +1,8 @@
-import { Categories } from "../components/Categories";
-import { getCategories } from "../lib/api";
+import { Categories } from '../components/Categories'
+import { getCategories } from '../lib/api'
 
 export default async function CategoriesPage() {
-  const categories = await getCategories();
+  const categories = await getCategories()
 
-  return (
-    <Categories categories={categories.data} />
-  );
+  return <Categories categories={categories.data} />
 }

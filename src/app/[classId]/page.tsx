@@ -1,30 +1,30 @@
-import { getClassBySlug } from "@/@@/lib/api";
-import { TClass } from "@/@@/types";
-import { BookClass } from "@/@@/components/class/BookClass";
+import { getClassBySlug } from '@/@@/lib/api'
+import { TClass } from '@/@@/types'
+import { BookClass } from '@/@@/components/class/BookClass'
 
 export default async function ClassPage({
   params,
 }: {
-  params: Promise<{ classId: string }>;
+  params: Promise<{ classId: string }>
 }) {
-  const { classId } = await params;
-  const { data } = await getClassBySlug(classId);
+  const { classId } = await params
+  const { data } = await getClassBySlug(classId)
 
-  const classItem: TClass = data[0];
-  const timetables = classItem.timetables;
-  const locations = [...new Set(timetables.map((timetable) => timetable.gym))];
+  const classItem: TClass = data[0]
+  const timetables = classItem.timetables
+  const locations = [...new Set(timetables.map((timetable) => timetable.gym))]
 
   return (
-    <div className="grid grid-cols-2 gap-10">
-      <div className="flex flex-col gap-12">
-        <h1 className="text-white text-3xl uppercase font-extrabold text-center">
+    <div className='grid grid-cols-1 gap-10 lg:grid-cols-2'>
+      <div className='flex flex-col gap-8 lg:gap-12'>
+        <h1 className='text-center text-3xl font-extrabold uppercase text-white'>
           {classItem.title}
         </h1>
-        <div className="flex gap-10 py-3 border-y border-[#2D2D2D]">
-          <div className="text-[#BDBDBD] font-medium">Locations:</div>
-          <div className="flex flex-col gap-1">
+        <div className='flex gap-10 border-y border-[#2D2D2D] py-3'>
+          <div className='font-medium text-[#BDBDBD]'>Locations:</div>
+          <div className='flex flex-col gap-1'>
             {locations.map((location, i) => (
-              <div key={`${location}-${i}`} className="text-white font-medium">
+              <div key={`${location}-${i}`} className='font-medium text-white'>
                 {location}
               </div>
             ))}
@@ -33,9 +33,13 @@ export default async function ClassPage({
         <BookClass classItem={classItem} />
       </div>
       <div
-        className="fixed top-0 right-0 w-[50%] h-full bg-cover bg-center"
+        className='fixed right-0 top-0 hidden h-full w-[50%] bg-cover bg-center lg:block'
+        style={{ backgroundImage: `url(${classItem.featuredImage.url})` }}
+      />
+      <div
+        className='block h-full min-h-[800px] w-full bg-cover bg-center lg:hidden'
         style={{ backgroundImage: `url(${classItem.featuredImage.url})` }}
       />
     </div>
-  );
+  )
 }

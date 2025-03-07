@@ -1,14 +1,14 @@
 export const CategoriesBgAnimation = () => {
   return (
-    <div className="absolute -z-10 inset-0 hidden xl:flex items-center justify-center">
+    <div className='absolute inset-0 -z-10 hidden items-center justify-center xl:flex'>
       <p
-        className="text-transparent text-8xl font-extrabold uppercase fixed"
+        className='fixed text-8xl font-extrabold uppercase text-transparent'
         style={{
-          WebkitTextStroke: "2px white",
+          WebkitTextStroke: '2px white',
         }}
       >
         Select Category
       </p>
     </div>
-  );
-};
+  )
+}

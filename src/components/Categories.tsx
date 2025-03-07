@@ -1,14 +1,14 @@
-import { TCategory } from "../types";
-import { CategoriesBgAnimation } from "./CategoriesBgAnimation";
-import { CategoryCard } from "./CategoryCard";
+import { TCategory } from '../types'
+import { CategoriesBgAnimation } from './CategoriesBgAnimation'
+import { CategoryCard } from './CategoryCard'
 
 interface Props {
-  categories: TCategory[];
+  categories: TCategory[]
 }
 
 export const Categories = ({ categories }: Props) => {
   return (
-    <div className="pt-20 grid bg-gradient-to-t from-black to-transparent from-50%">
+    <div className='grid bg-gradient-to-t from-black from-50% to-transparent pt-0 xl:pt-20'>
       {categories.map((category, index) => (
         <CategoryCard
           key={`${category.id}-${index}`}
@@ -18,5 +18,5 @@ export const Categories = ({ categories }: Props) => {
       ))}
       <CategoriesBgAnimation />
     </div>
-  );
-};
+  )
+}

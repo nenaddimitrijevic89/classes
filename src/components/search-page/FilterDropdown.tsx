@@ -1,22 +1,22 @@
-"use client";
+'use client'
 
-import Image from "next/image";
+import Image from 'next/image'
 
-import close from "@/@@/assets/close.svg";
-import { ECategorySlug, TCategory, TGym } from "@/@@/types";
-import { CategoryColorBullet } from "../CategoryColorBullet";
-import { FilterButton } from "./FilterButton";
-import { FilterList } from "./FilterList";
+import close from '@/@@/assets/close.svg'
+import { ECategorySlug, TCategory, TGym } from '@/@@/types'
+import { CategoryColorBullet } from '../CategoryColorBullet'
+import { FilterButton } from './FilterButton'
+import { FilterList } from './FilterList'
 
 interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-  selectedGyms: TGym["slug"][];
-  selectedCategories: ECategorySlug[];
-  gyms: TGym[];
-  categories: TCategory[];
-  handleGymFilters: (gymSlug: TGym["slug"]) => void;
-  handleCategoryFilters: (categorySlug: ECategorySlug) => void;
+  isOpen: boolean
+  onClose: () => void
+  selectedGyms: TGym['slug'][]
+  selectedCategories: ECategorySlug[]
+  gyms: TGym[]
+  categories: TCategory[]
+  handleGymFilters: (gymSlug: TGym['slug']) => void
+  handleCategoryFilters: (categorySlug: ECategorySlug) => void
 }
 
 export const FilterDropdown = ({
@@ -29,25 +29,25 @@ export const FilterDropdown = ({
   handleGymFilters,
   handleCategoryFilters,
 }: Props) => {
-  const isGymActive = (gymSlug: string) => selectedGyms.includes(gymSlug);
+  const isGymActive = (gymSlug: string) => selectedGyms.includes(gymSlug)
   const isCategoryActive = (categorySlug: ECategorySlug) =>
-    selectedCategories.includes(categorySlug);
+    selectedCategories.includes(categorySlug)
 
   return (
     <div
       onClick={onClose}
-      className={`fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-10 transition-all duration-300 ease-in-out ${
-        isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+      className={`fixed left-0 top-0 z-10 h-full w-full bg-black bg-opacity-70 transition-all duration-300 ease-in-out ${
+        isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex flex-col gap-5 pt-10 pb-7 z-20 w-full bg-[#131313] px-5 sm:px-10 lg:px-[136px]"
+        className='z-20 flex w-full flex-col gap-5 bg-[#131313] px-5 pb-7 pt-10 sm:px-10 lg:px-[136px]'
       >
-        <div className="flex flex-wrap gap-2">
+        <div className='flex flex-wrap gap-2'>
           <FilterButton
             onClick={onClose}
-            className={`${isOpen ? "bg-orange" : "bg-white"}`}
+            className={`${isOpen ? 'bg-orange' : 'bg-white'}`}
           />
           <FilterList
             gymFilters={selectedGyms}
@@ -58,50 +58,48 @@ export const FilterDropdown = ({
             onCategoryClick={handleCategoryFilters}
           />
         </div>
-        <div className="flex gap-10">
-          <div className="flex flex-col gap-5">
-            <span className="text-white font-semibold">Locations</span>
-            <div className="flex flex-col gap-1">
+        <div className='flex gap-10'>
+          <div className='flex flex-col gap-5'>
+            <span className='font-semibold text-white'>Locations</span>
+            <div className='flex flex-col gap-1'>
               {gyms.map((gym) => (
                 <div
                   key={gym.id}
-                  className={`flex gap-2 py-1 cursor-pointer transition duration-300 ease-in-out
-                    ${
-                      isGymActive(gym.slug)
-                        ? "bg-white text-black w-fit px-2 hover:bg-orange"
-                        : "text-white hover:text-orange"
-                    }`}
+                  className={`flex cursor-pointer gap-2 py-1 transition duration-300 ease-in-out ${
+                    isGymActive(gym.slug)
+                      ? 'w-fit bg-white px-2 text-black hover:bg-orange'
+                      : 'text-white hover:text-orange'
+                  }`}
                   onClick={() => handleGymFilters(gym.slug)}
                 >
                   <span>{gym.title}</span>
                   {isGymActive(gym.slug) && (
-                    <Image src={close} className="w-2" alt="close icon" />
+                    <Image src={close} className='w-2' alt='close icon' />
                   )}
                 </div>
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-5">
-            <span className="text-white font-semibold">Category</span>
-            <div className="flex flex-col gap-1">
+          <div className='flex flex-col gap-5'>
+            <span className='font-semibold text-white'>Category</span>
+            <div className='flex flex-col gap-1'>
               {categories.map((category) => (
                 <div
                   key={category.id}
-                  className={`flex gap-2 items-center py-1 cursor-pointer transition duration-300 ease-in-out
-                  ${
+                  className={`flex cursor-pointer items-center gap-2 py-1 transition duration-300 ease-in-out ${
                     isCategoryActive(category.slug)
-                      ? "bg-white text-black w-fit px-2 hover:bg-orange"
-                      : "text-white hover:text-orange"
+                      ? 'w-fit bg-white px-2 text-black hover:bg-orange'
+                      : 'text-white hover:text-orange'
                   }`}
                   onClick={() => handleCategoryFilters(category.slug)}
                 >
                   <CategoryColorBullet
                     categorySlug={category.slug}
-                    className="w-3 h-3"
+                    className='h-3 w-3'
                   />
                   <span>{category.title}</span>
                   {isCategoryActive(category.slug) && (
-                    <Image src={close} className="w-2" alt="close icon" />
+                    <Image src={close} className='w-2' alt='close icon' />
                   )}
                 </div>
               ))}
@@ -110,5 +108,5 @@ export const FilterDropdown = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

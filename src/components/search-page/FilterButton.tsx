@@ -1,6 +1,6 @@
-import filter from "@/@@/assets/filter.svg";
-import Image from "next/image";
-import { twMerge } from "tailwind-merge";
+import filter from '@/@@/assets/filter.svg';
+import Image from 'next/image';
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
   onClick: () => void;
@@ -11,13 +11,13 @@ export const FilterButton = ({ onClick, className }: Props) => {
   return (
     <div
       className={twMerge(
-        "flex gap-3 px-3 py-2 cursor-pointer bg-white hover:bg-orange transition duration-300 ease-in-out",
-        className
+        'flex cursor-pointer gap-3 bg-white px-3 py-2 transition duration-300 ease-in-out hover:bg-orange',
+        className,
       )}
       onClick={onClick}
     >
-      <span className="font-medium">Filter</span>
-      <Image src={filter} alt="filter icon" />
+      <span className='font-medium'>Filter</span>
+      <Image src={filter} alt='filter icon' />
     </div>
   );
 };

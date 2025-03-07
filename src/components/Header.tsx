@@ -9,7 +9,7 @@ export const Header = () => {
       <nav>
         <ul className='flex gap-4'>
           <li className='text-sm font-semibold uppercase leading-[13px] tracking-[1px] shadow-custom'>
-            <Link href='/contact'>Join Now</Link>
+            <Link href='/'>Join Now</Link>
           </li>
         </ul>
       </nav>

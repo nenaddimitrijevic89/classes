@@ -1,6 +1,6 @@
-import { getClassBySlug } from '@/@@/lib/api'
 import { TClass } from '@/@@/types'
 import { BookClass } from '@/@@/components/class/BookClass'
+import { getClassBySlug } from '@/@@/api/classes'
 
 export default async function ClassPage({
   params,

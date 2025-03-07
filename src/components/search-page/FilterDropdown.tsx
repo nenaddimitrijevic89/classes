@@ -3,7 +3,7 @@
 import Image from 'next/image'
 
 import close from '@/@@/assets/close.svg'
-import { ECategorySlug, TCategory, TGym } from '@/@@/types'
+import { ECategory, TCategory, TGym } from '@/@@/types'
 import { CategoryColorBullet } from '../CategoryColorBullet'
 import { FilterButton } from './FilterButton'
 import { FilterList } from './FilterList'
@@ -12,11 +12,11 @@ interface Props {
   isOpen: boolean
   onClose: () => void
   selectedGyms: TGym['slug'][]
-  selectedCategories: ECategorySlug[]
+  selectedCategories: ECategory[]
   gyms: TGym[]
   categories: TCategory[]
   handleGymFilters: (gymSlug: TGym['slug']) => void
-  handleCategoryFilters: (categorySlug: ECategorySlug) => void
+  handleCategoryFilters: (categorySlug: ECategory) => void
 }
 
 export const FilterDropdown = ({
@@ -30,7 +30,7 @@ export const FilterDropdown = ({
   handleCategoryFilters,
 }: Props) => {
   const isGymActive = (gymSlug: string) => selectedGyms.includes(gymSlug)
-  const isCategoryActive = (categorySlug: ECategorySlug) =>
+  const isCategoryActive = (categorySlug: ECategory) =>
     selectedCategories.includes(categorySlug)
 
   return (

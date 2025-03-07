@@ -1,9 +1,9 @@
 import { twMerge } from 'tailwind-merge'
 import { CATEGORY_COLORS } from '../constants/categoryColors'
-import { ECategorySlug } from '../types'
+import { ECategory } from '../types'
 
 interface Props {
-  categorySlug: ECategorySlug
+  categorySlug: ECategory
   className?: string
 }
 

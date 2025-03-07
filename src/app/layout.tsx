@@ -1,16 +1,16 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { Header } from '../components/Header';
+import type { Metadata } from 'next'
+import './globals.css'
+import { Header } from '../components/Header'
 
 export const metadata: Metadata = {
   title: 'Categories',
   description: 'A collection of categories',
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang='en'>
@@ -19,5 +19,5 @@ export default function RootLayout({
         <div className='px-5 py-[120px] sm:px-10'>{children}</div>
       </body>
     </html>
-  );
+  )
 }

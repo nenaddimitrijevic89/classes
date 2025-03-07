@@ -1,10 +1,12 @@
-import { Search } from "@/@@/components/search-page/Search";
-import { getAllClasses, getCategories, getGyms } from "@/@@/lib/api";
+import { getCategories } from '@/@@/api/categories'
+import { getClasses } from '@/@@/api/classes'
+import { getGyms } from '@/@@/api/gyms'
+import { Search } from '@/@@/components/search-page/Search'
 
 export default async function SearchPage() {
-  const classes = await getAllClasses();
-  const gyms = await getGyms();
-  const categories = await getCategories();
+  const classes = await getClasses()
+  const gyms = await getGyms()
+  const categories = await getCategories()
 
   return (
     <Search
@@ -12,5 +14,5 @@ export default async function SearchPage() {
       gyms={gyms.data}
       categories={categories.data}
     />
-  );
+  )
 }

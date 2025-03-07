@@ -1,13 +1,13 @@
-import { ECategorySlug, TCategory, TGym } from "@/@@/types";
-import { FilterItem } from "./FilterItem";
+import { ECategory, TCategory, TGym } from '@/@@/types'
+import { FilterItem } from './FilterItem'
 
 interface Props {
-  gymFilters: string[];
-  categoryFilters: ECategorySlug[];
-  gyms: TGym[];
-  categories: TCategory[];
-  onGymClick: (gym: string) => void;
-  onCategoryClick: (category: ECategorySlug) => void;
+  gymFilters: string[]
+  categoryFilters: ECategory[]
+  gyms: TGym[]
+  categories: TCategory[]
+  onGymClick: (gym: string) => void
+  onCategoryClick: (category: ECategory) => void
 }
 
 export const FilterList = ({
@@ -24,7 +24,7 @@ export const FilterList = ({
         key={`${filter}-${i}`}
         filter={gyms.find((gym) => gym.slug === filter)?.title || filter}
         onClick={() => onGymClick(filter)}
-        className="hidden lg:flex"
+        className='hidden lg:flex'
       />
     ))}
     {categoryFilters.map((filter, i) => (
@@ -35,8 +35,8 @@ export const FilterList = ({
           filter
         }
         onClick={() => onCategoryClick(filter)}
-        className="hidden lg:flex"
+        className='hidden lg:flex'
       />
     ))}
   </>
-);
+)

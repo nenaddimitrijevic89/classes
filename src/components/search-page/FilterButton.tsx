@@ -1,10 +1,11 @@
-import filter from '@/@@/assets/filter.svg';
-import Image from 'next/image';
-import { twMerge } from 'tailwind-merge';
+import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
+
+import filter from '@/@@/assets/filter.svg'
 
 interface Props {
-  onClick: () => void;
-  className?: string;
+  onClick: () => void
+  className?: string
 }
 
 export const FilterButton = ({ onClick, className }: Props) => {
@@ -19,5 +20,5 @@ export const FilterButton = ({ onClick, className }: Props) => {
       <span className='font-medium'>Filter</span>
       <Image src={filter} alt='filter icon' />
     </div>
-  );
-};
+  )
+}

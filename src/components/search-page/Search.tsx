@@ -3,8 +3,8 @@
 import { Suspense, useCallback, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-import { ECategorySlug, TCategory, TClass, TGym } from '@/@@/types'
-import { ClassCard } from '../ClassCard'
+import { ECategory, TCategory, TClass, TGym } from '@/@@/types'
+import { ClassCard } from '../class/ClassCard'
 import { LoadingSpinner } from '../LoadingSpinner'
 import { FilterButton } from './FilterButton'
 import { FilterDropdown } from './FilterDropdown'
@@ -19,9 +19,7 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
   const [loading, setLoading] = useState(true)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [selectedGyms, setSelectedGyms] = useState<TGym['slug'][]>([])
-  const [selectedCategories, setSelectedCategories] = useState<ECategorySlug[]>(
-    [],
-  )
+  const [selectedCategories, setSelectedCategories] = useState<ECategory[]>([])
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -33,7 +31,7 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
       setSelectedGyms(gym.split(' '))
     }
     if (category) {
-      setSelectedCategories(category.split(' ') as ECategorySlug[])
+      setSelectedCategories(category.split(' ') as ECategory[])
     }
     setLoading(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,7 +62,7 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
     setSelectedGyms([...selectedGyms, gymSlug])
   }
 
-  const handleCategoryFilters = (categorySlug: ECategorySlug) => {
+  const handleCategoryFilters = (categorySlug: ECategory) => {
     if (selectedCategories.includes(categorySlug)) {
       const filtered = selectedCategories.filter(
         (slug) => slug !== categorySlug,

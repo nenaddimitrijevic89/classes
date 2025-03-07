@@ -1,18 +1,15 @@
 import Link from 'next/link'
 
-import { TClass } from '../types'
-import { DiagonalArrow } from './DiagonalArrow'
-import { CategoryColorBullet } from './CategoryColorBullet'
+import { TClass } from '../../types'
+import { DiagonalArrow } from '../DiagonalArrow'
+import { CategoryColorBullet } from '../CategoryColorBullet'
 
 interface Props {
   classItem: TClass
 }
 
 export const ClassCard = ({ classItem }: Props) => {
-  const categorySlug = classItem?.categories?.[0]?.slug
-
   const categories = classItem?.categories?.map((category) => category.slug)
-  console.log(categories)
 
   return (
     <Link href={`/${classItem.slug}`} key={classItem.id}>

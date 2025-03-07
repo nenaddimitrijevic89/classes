@@ -1,12 +1,13 @@
 'use client'
 
+import { ChangeEvent, useState } from 'react'
 import Image from 'next/image'
+import dayjs from 'dayjs'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+
 import arrowRight from '@/@@/assets/arrow-right.svg'
 import { TClass, TOption } from '@/@@/types'
 import { Select } from '../Select'
-import { ChangeEvent, useState } from 'react'
-import dayjs from 'dayjs'
-import advancedFormat from 'dayjs/plugin/advancedFormat'
 
 dayjs.extend(advancedFormat)
 

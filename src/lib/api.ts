@@ -61,3 +61,16 @@ export const getClassBySlug = async (slug: string) => {
 
   return response.data;
 };
+
+export const getClassesByGymsAndCategoriesSlug = async (
+  gymSlugs: string[],
+  categorySlugs: string[]
+) => {
+  const response = await STRAPI_API.get(
+    `/classes?filters[gym][slug][$in]=${gymSlugs.join(
+      ","
+    )}&filters[categories][slug][$in]=${categorySlugs.join(",")}&populate=*`
+  );
+
+  return response.data;
+};

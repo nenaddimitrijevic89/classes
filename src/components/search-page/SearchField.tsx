@@ -18,7 +18,7 @@ export const SearchField = ({ className, ...props }: Props) => (
     <Image src={search} alt='search icon' />
     <input
       type='text'
-      className='bg-transparent px-4 text-white placeholder:text-[#BDBDBD] focus-visible:outline-none'
+      className='w-[180px] bg-transparent px-4 text-white placeholder:text-[#BDBDBD] focus-visible:outline-none sm:w-full'
       placeholder='Search'
       {...props}
     />

@@ -71,7 +71,7 @@ export const FilterDropdown = ({
           />
         </div>
         <div className='flex gap-10'>
-          <div className='flex flex-col gap-5'>
+          <div className='flex flex-col gap-3 sm:gap-5'>
             <span className='font-semibold text-white'>Locations</span>
             <div className='flex flex-col gap-1'>
               {gyms.map((gym) => (

@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, Suspense, useCallback, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { ECategory, TCategory, TClass, TGym } from '@/@@/types'
@@ -8,6 +8,7 @@ import { ClassCard } from '../class/ClassCard'
 import { LoadingSpinner } from '../LoadingSpinner'
 import { FilterButton } from './FilterButton'
 import { FilterDropdown } from './FilterDropdown'
+import { SearchField } from './SearchField'
 
 interface Props {
   classes: TClass[]
@@ -20,6 +21,7 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [selectedGyms, setSelectedGyms] = useState<TGym['slug'][]>([])
   const [selectedCategories, setSelectedCategories] = useState<ECategory[]>([])
+  const [searchValue, setSearchValue] = useState('')
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -87,7 +89,12 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
         selectedGyms.includes(timetable.gym.toLowerCase().replace(' ', '-')),
       )
 
-    return matchesCategory && matchesGym
+    const matchesSearchValue =
+      searchValue === '' ||
+      cls.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+      cls.excerpt?.toLowerCase().includes(searchValue.toLowerCase())
+
+    return matchesCategory && matchesGym && matchesSearchValue
   })
 
   if (loading) {
@@ -96,10 +103,16 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
 
   return (
     <div className='px-0 lg:px-24'>
-      <div className='fixed top-10 z-10 pl-14 lg:pl-0'>
+      <div className='fixed top-10 z-10 flex gap-5 pl-14 lg:pl-0'>
         <FilterButton
           onClick={() => setDropdownOpen(true)}
           className={`${dropdownOpen ? 'hidden' : 'flex'}`}
+        />
+        <SearchField
+          className={`${dropdownOpen ? 'hidden' : 'flex'}`}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setSearchValue(e.target.value)
+          }
         />
       </div>
       <FilterDropdown
@@ -113,7 +126,13 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
         handleCategoryFilters={handleCategoryFilters}
       />
       {filteredClasses.map((cls: TClass, index: number) => (
-        <ClassCard key={`${cls.id}-${index}`} classItem={cls} />
+        <ClassCard
+          key={`${cls.id}-${index}`}
+          classItem={cls}
+          className={
+            filteredClasses.length === index + 1 ? 'last:border-b' : ''
+          }
+        />
       ))}
     </div>
   )

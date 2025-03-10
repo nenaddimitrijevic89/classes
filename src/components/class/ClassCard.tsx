@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { twMerge } from 'tailwind-merge'
 
 import { TClass } from '../../types'
 import { DiagonalArrow } from '../DiagonalArrow'
@@ -6,14 +7,20 @@ import { CategoryColorBullet } from '../CategoryColorBullet'
 
 interface Props {
   classItem: TClass
+  className?: string
 }
 
-export const ClassCard = ({ classItem }: Props) => {
+export const ClassCard = ({ classItem, className }: Props) => {
   const categories = classItem?.categories?.map((category) => category.slug)
 
   return (
     <Link href={`/${classItem.slug}`} key={classItem.id}>
-      <div className='flex justify-between gap-3 border-t border-[#2d2d2d] py-5'>
+      <div
+        className={twMerge(
+          'flex justify-between gap-3 border-t border-[#2d2d2d] py-5',
+          className,
+        )}
+      >
         <div className='flex flex-col gap-2 md:w-[60%]'>
           <h1 className='text-xl font-bold uppercase text-white md:text-2xl'>
             {classItem.title}

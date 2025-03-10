@@ -9,14 +9,16 @@ interface Props extends HTMLProps<HTMLInputElement> {
 }
 
 export const SearchField = ({ className, ...props }: Props) => (
-  <div className='flex items-center border-b border-[#2D2D2D] bg-black bg-opacity-65'>
+  <div
+    className={twMerge(
+      'flex items-center border-b border-[#2D2D2D] bg-black bg-opacity-65',
+      className,
+    )}
+  >
     <Image src={search} alt='search icon' />
     <input
       type='text'
-      className={twMerge(
-        'bg-transparent px-4 text-white placeholder:text-[#BDBDBD] focus-visible:outline-none',
-        className,
-      )}
+      className='bg-transparent px-4 text-white placeholder:text-[#BDBDBD] focus-visible:outline-none'
       placeholder='Search'
       {...props}
     />

@@ -109,7 +109,8 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
           className={`${dropdownOpen ? 'hidden' : 'flex'}`}
         />
         <SearchField
-          className={`${dropdownOpen ? 'hidden' : 'flex'}`}
+          className={`${dropdownOpen ? 'hidden' : 'flex'} hidden sm:flex`}
+          value={searchValue}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setSearchValue(e.target.value)
           }
@@ -122,8 +123,10 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
         selectedCategories={selectedCategories}
         gyms={gyms}
         categories={categories}
+        searchValue={searchValue}
         handleGymFilters={handleGymFilters}
         handleCategoryFilters={handleCategoryFilters}
+        handleSearch={setSearchValue}
       />
       {filteredClasses.map((cls: TClass, index: number) => (
         <ClassCard

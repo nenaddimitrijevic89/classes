@@ -1,5 +1,6 @@
 'use client'
 
+import { ChangeEvent } from 'react'
 import Image from 'next/image'
 
 import close from '@/@@/assets/close.svg'
@@ -7,6 +8,7 @@ import { ECategory, TCategory, TGym } from '@/@@/types'
 import { CategoryColorBullet } from '../CategoryColorBullet'
 import { FilterButton } from './FilterButton'
 import { FilterList } from './FilterList'
+import { SearchField } from './SearchField'
 
 interface Props {
   isOpen: boolean
@@ -15,8 +17,10 @@ interface Props {
   selectedCategories: ECategory[]
   gyms: TGym[]
   categories: TCategory[]
+  searchValue: string
   handleGymFilters: (gymSlug: TGym['slug']) => void
   handleCategoryFilters: (categorySlug: ECategory) => void
+  handleSearch: (searchValue: string) => void
 }
 
 export const FilterDropdown = ({
@@ -26,8 +30,10 @@ export const FilterDropdown = ({
   selectedCategories,
   gyms,
   categories,
+  searchValue,
   handleGymFilters,
   handleCategoryFilters,
+  handleSearch,
 }: Props) => {
   const isGymActive = (gymSlug: string) => selectedGyms.includes(gymSlug)
   const isCategoryActive = (categorySlug: ECategory) =>
@@ -45,10 +51,16 @@ export const FilterDropdown = ({
         className='z-20 flex w-full flex-col gap-5 bg-[#131313] px-5 pb-7 pt-10 sm:px-10 lg:px-[136px]'
       >
         <div className='flex flex-wrap gap-2'>
-          <FilterButton
-            onClick={onClose}
-            className={`${isOpen ? 'bg-orange' : 'bg-white'}`}
-          />
+          <div className='flex gap-5'>
+            <FilterButton onClick={onClose} className='bg-orange' />
+            <SearchField
+              className='flex lg:hidden'
+              value={searchValue}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                handleSearch(e.target.value)
+              }
+            />
+          </div>
           <FilterList
             gymFilters={selectedGyms}
             categoryFilters={selectedCategories}

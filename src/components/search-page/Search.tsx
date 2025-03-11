@@ -9,6 +9,7 @@ import { LoadingSpinner } from '../LoadingSpinner'
 import { FilterButton } from './FilterButton'
 import { FilterDropdown } from './FilterDropdown'
 import { SearchField } from './SearchField'
+import { ImageSlideshow } from './ImageSlideshow'
 
 interface Props {
   classes: TClass[]
@@ -128,6 +129,7 @@ const SearchComponent = ({ classes, gyms, categories }: Props) => {
         handleCategoryFilters={handleCategoryFilters}
         handleSearch={setSearchValue}
       />
+      <ImageSlideshow />
       {filteredClasses.map((cls: TClass, index: number) => (
         <ClassCard
           key={`${cls.id}-${index}`}

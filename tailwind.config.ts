@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from 'tailwindcss'
 
 export default {
   content: [
@@ -20,7 +20,10 @@ export default {
       boxShadow: {
         custom: '0 0 9px rgba(0, 0, 0, 0.5)',
       },
+      fontFamily: {
+        sans: ['Helvetica-Extended', 'sans-serif'],
+      },
     },
   },
   plugins: [],
-} satisfies Config;
+} satisfies Config

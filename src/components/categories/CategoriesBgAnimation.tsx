@@ -4,7 +4,7 @@ export const CategoriesBgAnimation = () => {
       <p
         className='fixed text-8xl font-extrabold uppercase text-transparent'
         style={{
-          WebkitTextStroke: '2px white',
+          WebkitTextStroke: '1px white',
         }}
       >
         Select Category

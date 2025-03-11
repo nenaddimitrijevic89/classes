@@ -14,8 +14,17 @@
   }
 }
 
+@font-face {
+  font-family: 'Helvetica-Extended';
+  src:
+    url('/fonts/Helvetica-Neue-Extended.woff2') format('woff2'),
+    url('/fonts/Helvetica-Neue-Extended.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Helvetica, sans-serif;
+  font-family: 'Helvetica-Extended', sans-serif;
 }
